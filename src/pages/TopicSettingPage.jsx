@@ -6,19 +6,21 @@ import topicImage2 from "../assets//topicimage2.png";
 import topicImage3 from "../assets/topicimage3.png";
 import topicImage4 from "../assets/topicimage4.png";
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const TopicSettingPage = () => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
-  
-    function handleClick() {
-        navigate('/new');
-    };
+  function handleClick() {
+    navigate("/new");
+  }
 
   return (
     <div className="TopicSettingPage">
-      <img src={logoImage} alt="" className="logoimage" />
+      <Link to="/">
+        <img src={logoImage} alt="" className="logoimage" />
+      </Link>
       <div className="topicselect">
         <div
           style={{
@@ -57,8 +59,7 @@ const TopicSettingPage = () => {
             color={"white"}
           />
         </div>
-        <button className="selfmadebutton"
-          onClick={handleClick}>
+        <button className="selfmadebutton" onClick={handleClick}>
           <div
             style={{
               height: "20px",
@@ -76,6 +77,7 @@ const TopicSettingPage = () => {
               fontSize: "26px",
               fontWeight: "bold",
               marginTop: "12px",
+              marginBottom: "12px",
               letterSpacing: "-1px",
             }}
           >

@@ -8,7 +8,9 @@ import { Link } from "react-router-dom";
 const EndPage = () => {
   return (
     <div className="Endpage">
-      <img src={logoImage} alt="" className="logoimage" />
+      <Link to="/">
+        <img src={logoImage} alt="" className="logoimage" />
+      </Link>
       <div className="topicselect">
         <div className="title">대화가 종료되었어요</div>
         <div className="subTitle">EnPT와 함께 즐거운 대화 나누셨나요?</div>
@@ -22,7 +24,7 @@ const EndPage = () => {
             ></img>
             Retry
           </div>
-          <div className="endButtonSub">같은 주제로 재도전</div>
+          <div className="endButtonSub">같은 주제로 재도전할까요?</div>
         </button>
         <button className="endButton">
           <div className="endButtonTitle">
