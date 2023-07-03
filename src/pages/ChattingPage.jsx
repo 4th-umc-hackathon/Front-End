@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ChatBlock from "../components/ChatBlock";
 import logoImage from '../assets/logo.png';
 import sendIcon from '../assets/sendicon.png'
 import '../styles/ChattingPage.css'
+import axios from 'axios';
 
 const styles= {
     chatBar: {
@@ -67,10 +68,25 @@ function ChattingPage() {
             text: inputValue,
           };
           setMessages([...messages, newMessage]);
-          setInputValue('');
         }
       };
-
+    
+    // 처음 질문 보내기 서버 통신 구현부
+    useEffect(() => { axios({
+        method: "post",
+        url: "http://52.78.225.62:8080/api/chat",
+        data: {
+            level: "50" ,
+            age: "teenager" ,
+            place: "학교",
+            situation: "학교에서 밥 먹을 때 친구와 함께 대화해보자",
+            yourRole: "학생",
+            myRole: "친구",
+            userId: 1         ,
+        },
+      }).then((res) => {
+        console.log(res);
+    }); }, []);
 
 
     return (
