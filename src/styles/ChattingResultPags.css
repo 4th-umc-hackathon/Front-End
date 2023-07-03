@@ -4,11 +4,13 @@
 .chatWrap {
   justify-content: center;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
 }
 .wrap {
   display: flex;
-  margin-left: 400px;
+  justify-content: flex-end;
+  margin-right: 173px;
 }
 .oChat {
   width: 700px;
