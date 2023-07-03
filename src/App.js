@@ -7,6 +7,7 @@ import ChattingPage from "./pages/ChattingPage";
 import SelfSettingPage from "./pages/SelfSettingPage";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ChattingResultPage from "./pages/ChattingResultPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/end" element={<EndPage />} />
           <Route path="/new" element={<SelfSettingPage />} />
           <Route path="/chatroom" element={<ChattingPage />} />
+          <Route path="/result" element={<ChattingResultPage />}/>
         </Routes>
       </div>
     </BrowserRouter>
