@@ -24,10 +24,13 @@ const styles = {
   },
 };
 function ChatBlock(props) {
-
   return (
     <div style={styles.ic}>
-      <img src={chatblock} alt={props.altText} style={{width: "722px", height: "85px"}} />
+      <img
+        src={chatblock}
+        alt={props.altText}
+        style={{ width: "722px", height: "85px" }}
+      />
       <div style={styles.to}>
         <p style={styles.text}>{props.text}</p>
       </div>
