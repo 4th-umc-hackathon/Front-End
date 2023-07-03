@@ -3,6 +3,7 @@ import "../styles/EndPage.css";
 import houseIcone from "../assets/houseicon.png";
 import repeatIcone from "../assets/repeaticon.png";
 import spellcheckIcone from "../assets/spellcheckicon.png";
+import { Link } from "react-router-dom";
 
 const EndPage = () => {
   return (
@@ -36,19 +37,25 @@ const EndPage = () => {
             내가 말한 내용에서 문법 오류를 수정해줘요
           </div>
         </button>
-        <button className="endButton">
-          <div className="endButtonTitle">
-            <img
-              src={houseIcone}
-              alt=""
-              style={{ marginRight: "10px", marginTop: "10px", width: "30px" }}
-            ></img>
-            Home
-          </div>
-          <div className="endButtonSub">
-            홈으로 돌아가서 다른 주제로 도전해봐요
-          </div>
-        </button>
+        <Link to="/">
+          <button className="endButton">
+            <div className="endButtonTitle">
+              <img
+                src={houseIcone}
+                alt=""
+                style={{
+                  marginRight: "10px",
+                  marginTop: "10px",
+                  width: "30px",
+                }}
+              ></img>
+              Home
+            </div>
+            <div className="endButtonSub">
+              홈으로 돌아가서 다른 주제로 도전해봐요
+            </div>
+          </button>
+        </Link>
       </div>
     </div>
   );
