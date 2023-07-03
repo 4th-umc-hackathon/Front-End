@@ -1,8 +1,15 @@
 import logoImage from '../assets/logo.png'
 import Topic from '../components/Topic';
 import '../styles/SelfSettingPage.css'
+import { useNavigate } from 'react-router-dom'
 
 const SelfSettingPage = () => {
+    const navigate = useNavigate();
+  
+    function handleClick() {
+        navigate('/chatroom');
+    };
+
     return (
         <div className="SelfSettingPage">
             <img src={logoImage} alt="" className='logoimage'/>
@@ -17,7 +24,12 @@ const SelfSettingPage = () => {
                 <Topic color={'white'} placeholder={'ex) 잡지 기자'}/>
                 <div className='menu'>AI의 역할</div>
                 <Topic color={'white'} placeholder={'ex) 셀럽'}/>
-                <button className='startbutton'>이대로 대화 시작하기</button>
+                <button 
+                    className='startbutton'
+                    onClick={handleClick}
+                >
+                    이대로 대화 시작하기
+                </button>
             </div>
         </div>
     );

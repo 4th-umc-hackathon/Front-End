@@ -1,0 +1,14 @@
+.sendicon {
+    position: relative;
+    width: 40px;
+    top: 7px;
+    right: 75px;
+}
+
+.sendicon:hover {
+    cursor: pointer;
+}
+
+.chatinput:focus {
+    outline: none;
+}

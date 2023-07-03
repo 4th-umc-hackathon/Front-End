@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "../styles/CategoryButton.css";
+import { useNavigate } from 'react-router-dom'
 
 const styles = {
   bt: {
@@ -29,7 +30,17 @@ const styles = {
     marginLeft: "38px",
   },
 };
+
+
+
+
 const CategoriBtn = ({ text, underText, imgSrc, onClick, color }) => {
+  const navigate = useNavigate();
+  
+  function handleClick() {
+    navigate('/chatroom');
+  };
+
   return (
     <button
       style={{
@@ -44,7 +55,7 @@ const CategoriBtn = ({ text, underText, imgSrc, onClick, color }) => {
         letterSpacing: "-1px",
       }}
       className="button"
-      onClick={onClick}
+      onClick={handleClick}
     >
       <div style={styles.bt}>{text}</div>
       <div style={{ display: "flex" }}>
