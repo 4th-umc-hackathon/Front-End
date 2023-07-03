@@ -1,0 +1,31 @@
+.topicselect {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu {
+    width: 1030px;
+    height: 27px;
+    font-size: 27px;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 16px;
+}
+
+.startbutton {
+    width: 421px;
+    height: 78px;
+    background-color: #7e7e7e;
+    border: none;
+    box-shadow: inset 0 1px 4px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 9px;
+}
+
+.startbutton:hover {
+    cursor: pointer;
+}

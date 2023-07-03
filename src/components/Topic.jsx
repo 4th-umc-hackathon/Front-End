@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InputComponent from './InputComponent';
 
+
 const styles= {
     bt: {
         fontSize: "25px",
@@ -14,7 +15,7 @@ const styles= {
 }
 
 
-const Topic = ({ onClick, color }) => {
+const Topic = ({ onClick, color, placeholder }) => {
 
   return (
     <button
@@ -25,12 +26,13 @@ const Topic = ({ onClick, color }) => {
         height: 101,
         border: "none",
         boxShadow: "inset 0 1px 4px 1px rgba(0, 0, 0, 0.2)",
+        marginBottom: '36px'
         }}
       className="button"
       onClick={onClick}
     >
     <div style={styles.bt}>
-      <InputComponent />
+      <InputComponent placeholder={placeholder}/>
     </div>
 
     
