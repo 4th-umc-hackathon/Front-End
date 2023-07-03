@@ -1,11 +1,15 @@
 import logoImage from "../assets/logo.png";
 import LevelBtn from "../components/LevelBtn";
 import "../styles/LevelSettingPage.css";
+import { Link } from "react-router-dom";
 
 const LevelSettingPage = () => {
   return (
     <div className="LevelSettingPage">
-      <img src={logoImage} alt="" className="logoimage" />
+      <Link to="/">
+        {" "}
+        <img src={logoImage} alt="" className="logoimage" />
+      </Link>
       <div className="testbox">
         <div
           style={{

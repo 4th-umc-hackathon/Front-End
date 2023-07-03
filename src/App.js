@@ -5,7 +5,7 @@ import TopicSettingPage from "./pages/TopicSettingPage";
 import EndPage from "./pages/EndPage";
 import ChattingPage from "./pages/ChattingPage";
 import SelfSettingPage from "./pages/SelfSettingPage";
-
+import ChattingResultPage from "./pages/ChattingResultPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
           <Route path="/end" element={<EndPage />} />
           <Route path="/new" element={<SelfSettingPage />} />
           <Route path="/chatroom" element={<ChattingPage />} />
+          <Route path="/chatresult" element={<ChattingResultPage />} />
         </Routes>
       </div>
     </BrowserRouter>

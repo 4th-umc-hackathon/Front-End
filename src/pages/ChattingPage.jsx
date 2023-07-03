@@ -1,38 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import ChatBlock from "../components/ChatBlock";
-import logoImage from '../assets/logo.png';
-import sendIcon from '../assets/sendicon.png'
-import '../styles/ChattingPage.css'
-import axios from 'axios';
-import ChatBlock1 from '../components/ChatBlock1';
+import logoImage from "../assets/logo.png";
+import sendIcon from "../assets/sendicon.png";
+import soundIcon from "../assets/soundIcon.png";
+import "../styles/ChattingPage.css";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import PlaySound from "../components/PlaySound";
 
-const styles= {
-    chatBar: {
-        width: "100%",
-        display: "flex",
-        bottom: 0,
-        position: "absolute",
-        justifyContent: "center",
-        marginBottom: "20px",
-    },
+const styles = {
+  chatBar: {
+    width: "100%",
+    display: "flex",
+    bottom: 0,
+    position: "absolute",
+    justifyContent: "center",
+    marginBottom: "20px",
+  },
 
     chat: {
         width: "100%",
         display: "flex",
+        justifyContent: "flex-end",
         bottom: 0,
         position: "absolute",
-        //marginTop: "250px"
-        marginLeft: "150px",
-        marginBottom: "120px"
+        marginBottom: "100px",
         
-    },
-    chat1: {
-        width: "100%",
-        display: "flex",
-        justifyContent: "flex-start",
-        bottom: 0,
-        position: "absolute",
-        marginBottom: "250px",
         
     },
     in: {
@@ -65,99 +58,55 @@ const styles= {
         width: "100%",
     }
 
-
-}
 function ChattingPage() {
     const [messages, setMessages] = useState([]);
     const [inputValue, setInputValue] = useState('');
-    const [serverUrl, setserverUrl] = useState('');
-    const [responseMessages, setResponseMessages] = useState([]);
-    const [sendid, setSendId] = useState(0);
-    const [resid, setResId] = useState(-1);
-    const [firstMessage, SetFirstMessage] = useState('');
-    const [option, setOption] = useState(0);
 
-
-    function handleMessageSend() {
-        axios({
-            method: "post",
-            url: serverUrl,
-            data: {
-                feedback : inputValue
-            },
-        }).then((res) => {
-            console.log(res);
-            console.log(res.data.result.contentRes.message);
-            if (inputValue.trim() !== '') {
-                const newMessage = {
-                    id: sendid,
-                    text: inputValue,
-                };
-                setSendId(sendid + 1);
-                setMessages([...messages, newMessage]);
-                //console.log(messages);
-                const responseMessage = {
-                    id: resid,
-                    text: res.data.result.contentRes.message,
-                };
-                setResId(resid + 1);
-                setResponseMessages([...responseMessages, responseMessage]);
-                
-            }
-            console.log(messages);
-            console.log(responseMessages);
-        })
+    const handleMessageSend = () => {
+        if (inputValue.trim() !== '') {
+          const newMessage = {
+            id: Date.now(),
+            text: inputValue,
+          };
+          setMessages([...messages, newMessage]);
+        }
       };
     
-    useEffect(() => {
-        axios({
-            method: 'post',
-            url: 'http://52.78.225.62:9090/api/chat',
-            data: {
-                level: "10" ,
-                age: "teenager" ,
-                place: "카페에서",
-                situation: "친구와 영화, TV 드라마를 주제로 이야기를 나눠보기",
-                yourRole: "친구",
-                myRole: "나",
-                userId: 1,
-            },
-        }).then((res) => {
-            setserverUrl(`http://52.78.225.62:9090/api/chat/${res.data.result.id}`);
-            SetFirstMessage(res.data.result.contentRes.message);
-            
-        });
-    }, []);
+    // 처음 질문 보내기 서버 통신 구현부
+    useEffect(() => { axios({
+        method: "post",
+        url: "http://52.78.225.62:8080/api/chat",
+        data: {
+            level: "50" ,
+            age: "teenager" ,
+            place: "학교",
+            situation: "학교에서 밥 먹을 때 친구와 함께 대화해보자",
+            yourRole: "학생",
+            myRole: "친구",
+            userId: 1         ,
+        },
+      }).then((res) => {
+        console.log(res);
+    }); }, []);
 
-    //처음 질문 보내기 서버 통신 구현부
 
-    return (
+  return (
     <>
     
         <img src={logoImage} alt="" className='logoimage'/>
+
         <div style={styles.chat}>
-            <div className="message-list" style={{width: "1960px"}}>
+            <div className="message-list">
                 {messages.map(message => (
                 <div key={message.id} className="message">
                     <ChatBlock
                         text={message.text}
                     />
                 </div>
-                
-                ))}
-            </div>
-            <div className="message-list1" style={{width: "1960px"}}>
-                {responseMessages.map(message => (
-                <div key={message.id} className="message" width="1960px">
-                    <ChatBlock1
-                        text={message.text}
-                    />
-                </div>
-                
                 ))}
             </div>
         </div>
-
+      </div>
 
         <div style={styles.chatBar}>
             <div>
@@ -172,15 +121,20 @@ function ChattingPage() {
                 {/* <button style={styles.btn_style} onClick={handleMessageSend}>
                     입력
                 </button>                 */}
-                <img src={sendIcon} alt="" className='sendicon' onClick={handleMessageSend}/>
-            </div>
+          <img
+            src={sendIcon}
+            alt=""
+            className="sendicon"
+            onClick={handleMessageSend}
+          />
         </div>
+      </div>
 
-            {/* <div style={styles.chatBar}>
+      {/* <div style={styles.chatBar}>
                 <ChatInput color="white"/>
             </div> */}
     </>
-    )
+  );
 }
 
 export default ChattingPage;

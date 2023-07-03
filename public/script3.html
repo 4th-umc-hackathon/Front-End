@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>음성 재생</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      function base64ToBlob(base64, fileType) {
+        let typeHeader = "data:application/" + fileType + ";base64,"; // base64 헤더 파일 유형 정의
+        let audioSrc = typeHeader + base64;
+        let arr = audioSrc.split(",");
+        let array = arr[0].match(/:(.*?);/);
+        let mime =
+          (array && array.length > 1 ? array[1] : fileType) || fileType;
+        let bytes = window.atob(arr[1]);
+        let ab = new ArrayBuffer(bytes.length);
+        let ia = new Uint8Array(ab);
+        for (let i = 0; i < bytes.length; i++) {
+          ia[i] = bytes.charCodeAt(i);
+        }
+        return new Blob([ab], {
+          type: mime,
+        });
+      }
+
+      function testFun() {
+        var data = {
+          voice: {
+            languageCode: "en-US",
+          },
+          input: {
+            text: "hello",
+          },
+          audioConfig: {
+            audioEncoding: "mp3",
+          },
+        };
+
+        $.ajax({
+          type: "POST",
+          url: "https://texttospeech.googleapis.com/v1/text:synthesize?key=AIzaSyBqmUHW-NlVLtIyjNJk1ymw084CXrtKImU",
+          data: JSON.stringify(data),
+          dataType: "json",
+          contentType: "application/json; charset=UTF-8",
+          success: function (res) {
+            $("#textVal").val(res.audioContent);
+            var audioFile = new Audio();
+            let audioBlob = base64ToBlob(res.audioContent, "mp3");
+            audioFile.src = URL.createObjectURL(audioBlob);
+            audioFile.playbackRate = 1; // 재생속도
+            audioFile.play();
+          },
+          error: function (request, status, error) {
+            alert("오류", "오류가 발생하였습니다. 관리자에게 문의해주세요.");
+          },
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="testFun()">Ajax</button>
+  </body>
+</html>
