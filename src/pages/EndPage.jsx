@@ -1,5 +1,4 @@
 import logoImage from "../assets/logo.png";
-import CategoriBtn from "../components/CategoriBtn";
 import "../styles/EndPage.css";
 import houseIcone from "../assets/houseicon.png";
 import repeatIcone from "../assets/repeaticon.png";
@@ -15,7 +14,11 @@ const EndPage = () => {
         <div className="topicmenu"></div>
         <button className="endButton">
           <div className="endButtonTitle">
-            <img src={repeatIcone} alt="" style={{ marginRight: "10px" }}></img>
+            <img
+              src={repeatIcone}
+              alt=""
+              style={{ marginRight: "10px", width: "30px" }}
+            ></img>
             Retry
           </div>
           <div className="endButtonSub">같은 주제로 재도전</div>
@@ -25,7 +28,7 @@ const EndPage = () => {
             <img
               src={spellcheckIcone}
               alt=""
-              style={{ marginRight: "10px" }}
+              style={{ marginRight: "10px", width: "40px" }}
             ></img>
             Feedback
           </div>
@@ -35,7 +38,11 @@ const EndPage = () => {
         </button>
         <button className="endButton">
           <div className="endButtonTitle">
-            <img src={houseIcone} alt="" style={{ marginRight: "10px" }}></img>
+            <img
+              src={houseIcone}
+              alt=""
+              style={{ marginRight: "10px", marginTop: "10px", width: "30px" }}
+            ></img>
             Home
           </div>
           <div className="endButtonSub">
